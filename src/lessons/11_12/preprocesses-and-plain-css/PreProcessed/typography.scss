@@ -1,0 +1,15 @@
+// mixins
+@mixin typography-header1 {
+  font-size: 28px;
+  font-weight: 600;
+}
+
+@mixin typography-header2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+@mixin typography-text2 {
+  font-size: 14px;
+  font-weight: 500;
+}
