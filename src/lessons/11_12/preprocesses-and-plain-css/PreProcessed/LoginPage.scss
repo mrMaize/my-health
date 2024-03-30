@@ -1,0 +1,97 @@
+@import "./typography";
+@import "./variables";
+
+.page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    border: 3px solid $color-primary;
+    width: 300px;
+    height: 450px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.header {
+    @include typography-header1;
+
+    padding: 0;
+    margin: 0;
+}
+
+.login {
+    margin-bottom: 15px;
+    width: 100%;
+
+    span {
+        @include typography-text2;
+
+        display: block;
+        color: $color-primary;
+    }
+
+    input {
+        box-sizing: border-box;
+        width: 100%;
+        outline: none;
+        border: 1px solid $color-primary;
+        border-radius: 5px;
+        font-weight: 400;
+        color: $color-primary;
+        font-size: 20px;
+
+        &::placeholder {
+            color: $color-primary;
+        }
+    }
+}
+
+
+.password {
+    margin-bottom: 30px;
+    width: 100%;
+
+    span {
+        // can be replaced with '@include typography-text2'
+        font-size: 14px;
+        font-weight: 500;
+
+
+        display: block;
+        color: $color-primary;
+    }
+
+    input {
+        box-sizing: border-box;
+        width: 100%;
+        outline: none;
+        border-radius: 5px;
+        font-weight: 400;
+        color: $color-primary;
+        font-size: 20px;
+        border: 1px solid $color-primary;
+    }
+}
+
+.login-button {
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    font-weight: 500;
+    background-color: $color-green;
+    border: none;
+    color: $color-white;
+
+    &:hover {
+        background-color: $color-dark-green;
+    }
+}
