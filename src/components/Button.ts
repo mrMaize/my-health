@@ -8,6 +8,7 @@ const Button = styled.button`
     background-color: ${(props) => props.disabled ? 'grey' : 'forestgreen'};
     border: none;
     color: ${(props) => props.disabled ? '#282c34' : 'white'};
+    cursor: pointer;
 
     &:hover {
         background-color: ${(props) => props.disabled ? 'grey' : 'rgb(19, 114, 19)'};
