@@ -1,17 +1,17 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from 'react';
 
 const useHighlightRender = () => {
-    const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        ref.current!.style.borderColor = 'red'
+  useEffect(() => {
+    ref.current!.style.borderColor = 'red';
 
-        setTimeout(() => {
-            ref.current!.style.borderColor = ''
-        }, 200);
-    });
+    setTimeout(() => {
+      ref.current!.style.borderColor = '';
+    }, 200);
+  });
 
-    return ref;
-}
+  return ref;
+};
 
 export { useHighlightRender };

@@ -1,10 +1,9 @@
 import React from 'react';
-import LoginPage from "./modules/user/LoginPage";
+
+import LoginPage from './modules/user/LoginPage';
 
 function App() {
-  return (
-    <LoginPage />
-  );
+  return <LoginPage />;
 }
 
 export default App;
