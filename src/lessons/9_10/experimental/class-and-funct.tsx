@@ -1,91 +1,80 @@
-import React, {forwardRef, Fragment, memo, useEffect, useState} from "react";
+import React, { forwardRef, Fragment, memo, useEffect, useState } from 'react';
 import './class-and-funct.css';
 
-class ClockClass extends React.Component<any, { date: Date }> {
+class ClockClass extends React.Component<{ date: Date }, { date: Date }> {
+  timerId: NodeJS.Timer | undefined;
 
-    timerId: NodeJS.Timer | undefined;
+  constructor(props: { date: Date }) {
+    super(props);
+    this.state = { date: new Date() };
+  }
 
-    constructor(props: any) {
-        super(props);
+  componentDidMount() {
+    this.timerId = setInterval(() => {
+      this.setState({ date: new Date() });
+    }, 1000);
+  }
 
-        this.state = {date: new Date()}
-    }
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+    this.timerId = undefined;
+  }
 
-    componentDidMount() {
-        this.timerId = setInterval(() => {
-            this.setState({date: new Date()});
-        }, 1000);
-    }
+  componentDidUpdate(
+    prevProps: Readonly<{ date: Date }>,
+    prevState: Readonly<{ date: Date }>,
+    snapshot?: string
+  ) {
+    console.log(prevProps, prevState, snapshot);
+  }
 
-    componentWillUnmount() {
-        clearInterval(this.timerId);
-        this.timerId = undefined;
-    }
+  render() {
+    const { date } = this.state;
 
-    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<{ date: Date }>, snapshot?: any) {
-
-    }
-
-    render() {
-        const {date} = this.state;
-
-        return (
-            <div>{date.toLocaleTimeString()}</div>
-        );
-    }
+    return <div>{date.toLocaleTimeString()}</div>;
+  }
 }
 
-
 const ClockFunc = forwardRef<HTMLDivElement>((_, ref) => {
-    const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date());
 
-    useEffect(() => {
-        console.log('Функциональный компонент родился');
+  useEffect(() => {
+    console.log('Функциональный компонент родился');
 
-        const timerId = setInterval(() => {
-            setDate(new Date());
-        }, 1000);
+    const timerId = setInterval(() => {
+      setDate(new Date());
+    }, 1000);
 
-        return () => {
-            console.log('Функциональный компонент размонтирован!')
-            clearInterval(timerId);
-        }
-    }, []);
+    return () => {
+      console.log('Функциональный компонент размонтирован!');
+      clearInterval(timerId);
+    };
+  }, []);
 
-    useEffect(() => {
-        console.log('Дата изменилась!');
-    }, [date]);
+  useEffect(() => {
+    console.log('Дата изменилась!');
+  }, [date]);
 
-    return (
-        <Fragment>
-            <span>Текущая дата:</span>
-            <div ref={ref}>{date.toLocaleTimeString()}</div>
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      <span>Текущая дата:</span>
+      <div ref={ref}>{date.toLocaleTimeString()}</div>
+    </Fragment>
+  );
 });
 
 class ClassComponent extends React.Component {
-
-    render() {
-
-        return (
-            <div className="my-component">
-                I'm class component
-            </div>
-        )
-    }
+  render() {
+    return <div className="my-component">{`I'm class component`}</div>;
+  }
 }
 
 const FunctionComponent = memo(() => {
-    useEffect(() => {
-        console.log('FunctionComponent rendered');
-    });
+  useEffect(() => {
+    console.log('FunctionComponent rendered');
+  });
 
-    return (
-        <div className='my-component' >
-            I'm function component
-        </div>
-    )
-})
+  return <div className="my-component">{`I'm function component`}</div>;
+});
 
 export { ClockClass, ClockFunc, ClassComponent, FunctionComponent };
