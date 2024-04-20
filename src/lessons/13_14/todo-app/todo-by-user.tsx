@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import { useHighlightRender } from '../useHighlightRender';
+import { useRequest } from '../../../shared/api';
 
 const CubeData = styled.div`
   display: flex;
@@ -23,6 +24,23 @@ const TodoContainer = styled.div<{ $completed: boolean }>(
   `
 );
 
+interface IFetchTodosByUserId {
+  userId: number;
+}
+
+interface ISettingsProps {
+  signal?: AbortSignal;
+}
+
+const fetchTodosByUserId = (
+  { userId }: IFetchTodosByUserId,
+  { signal }: ISettingsProps
+) => {
+  return fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`, {
+    signal,
+  }).then((response) => response.json());
+};
+
 interface ITodo {
   id: number;
   title: string;
@@ -32,42 +50,10 @@ interface ITodo {
 const ToDoByUserId: FC<{ userId: number | null }> = ({ userId }) => {
   const cubeRef = useHighlightRender();
 
-  const [data, setData] = useState<null | ITodo[]>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    if (!userId) {
-      return;
-    }
-
-    setLoading(true);
-    const controller = new AbortController();
-
-    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`, {
-      signal: controller.signal,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!controller.signal.aborted) {
-          setData(data);
-        }
-      })
-      .catch((error) => {
-        if (!controller.signal.aborted) {
-          setError(error);
-        }
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      controller.abort();
-    };
-  }, [userId]);
+  const { isLoading, data, error } = useRequest<ITodo[]>(
+    userId && fetchTodosByUserId,
+    [{ userId }]
+  );
 
   if (!userId) {
     return <CubeData ref={cubeRef}>Пользователь не выбран</CubeData>;

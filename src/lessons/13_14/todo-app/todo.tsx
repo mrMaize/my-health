@@ -1,13 +1,15 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useHighlightRender } from '../useHighlightRender';
 
 import { ToDoByUserId } from './todo-by-user';
+import { useRequest } from '../../../shared/api';
 
 const Container = styled.div`
   display: flex;
   gap: 10px;
+  margin: 50px;
 `;
 
 const CubeData = styled.div`
@@ -51,43 +53,22 @@ interface IUser {
   name: string;
 }
 
+interface IFetchUsersProps {
+  signal?: AbortSignal;
+}
+
+const fetchUsers = ({ signal }: IFetchUsersProps) => {
+  return fetch(`https://jsonplaceholder.typicode.com/users`, {
+    signal,
+  }).then((response) => response.json());
+};
+
 const ToDoApp: FC = () => {
   const cubeRef = useHighlightRender();
 
   const [userId, setUserId] = useState<null | number>(null);
 
-  const [data, setData] = useState<null | IUser[]>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const controller = new AbortController();
-
-    fetch(`https://jsonplaceholder.typicode.com/users`, {
-      signal: controller.signal,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!controller.signal.aborted) {
-          setData(data);
-        }
-      })
-      .catch((error) => {
-        if (!controller.signal.aborted) {
-          setError(error);
-        }
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      controller.abort();
-    };
-  }, []);
+  const { data, error, isLoading } = useRequest<IUser[]>(fetchUsers);
 
   if (isLoading || !data) {
     return <CubeData ref={cubeRef}>Loading...</CubeData>;
