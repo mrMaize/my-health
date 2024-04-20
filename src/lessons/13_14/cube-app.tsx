@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback, useEffect, useState } from 'react';
 
 import './cube-app.css';
-import Button from '../../components/Button';
+import { Button } from '../../shared/components';
 
 import { useHighlightRender } from './useHighlightRender';
 import { ToDoApp } from './todo-app/todo';

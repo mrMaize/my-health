@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { FC, useEffect, useState } from 'react';
-
-import { useHighlightRender } from '../useHighlightRender';
+import styled, {css} from "styled-components";
+import {FC} from "react";
+import {useHighlightRender} from "../useHighlightRender";
+import {useRequest} from "../../../shared/api";
 
 const CubeData = styled.div`
   display: flex;
@@ -12,84 +12,50 @@ const CubeData = styled.div`
   border: 2px solid green;
 `;
 
-const TodoContainer = styled.div<{ $completed: boolean }>(
-  ({ $completed }) => css`
-    display: flex;
-    flex-wrap: wrap;
-    min-height: 20px;
-    padding: 10px;
-    border-radius: 15px;
-    background: ${$completed ? 'green' : 'gray'};
-  `
-);
+const TodoContainer = styled.div<{ $completed: boolean }>(({$completed}) => css`
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 20px;
+  padding: 10px;
+  border-radius: 15px;
+  background: ${$completed ? 'green' : 'gray'};
+`)
 
 interface ITodo {
-  id: number;
-  title: string;
-  completed: boolean;
+    id: number;
+    title: string;
+    completed: boolean
 }
 
-const ToDoByUserId: FC<{ userId: number | null }> = ({ userId }) => {
-  const cubeRef = useHighlightRender();
+const fetchTodosByUserId = ({ userId }: any, { signal }: any) => {
+  return fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`, {
+      signal
+  })
+  .then(response => response.json());
+}
 
-  const [data, setData] = useState<null | ITodo[]>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setLoading] = useState<boolean>(false);
+const ToDoByUserId:FC<{ userId: number | null }> = ({ userId }) => {
+    const cubeRef = useHighlightRender();
 
-  useEffect(() => {
+    const { data, error, isLoading } = useRequest<ITodo[]>(userId && fetchTodosByUserId, [{ userId }]);
+
+
     if (!userId) {
-      return;
+        return (<CubeData ref={cubeRef}>Пользователь не выбран</CubeData>);
     }
 
-    setLoading(true);
-    const controller = new AbortController();
+    if (isLoading || !data) {
+        return <CubeData ref={cubeRef}>Loading...</CubeData>
+    }
 
-    fetch(`https://jsonplaceholder.typicode.com/todos?userId=${userId}`, {
-      signal: controller.signal,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!controller.signal.aborted) {
-          setData(data);
-        }
-      })
-      .catch((error) => {
-        if (!controller.signal.aborted) {
-          setError(error);
-        }
-      })
-      .finally(() => {
-        if (!controller.signal.aborted) {
-          setLoading(false);
-        }
-      });
+    if (error) {
+        return <CubeData ref={cubeRef}>Error</CubeData>
+    }
 
-    return () => {
-      controller.abort();
-    };
-  }, [userId]);
+    return (
+        <CubeData ref={cubeRef}>
+            {data.map(({ id, title, completed }) => <TodoContainer key={id} $completed={completed}>{title}</TodoContainer>)}
+        </CubeData>)
+}
 
-  if (!userId) {
-    return <CubeData ref={cubeRef}>Пользователь не выбран</CubeData>;
-  }
-
-  if (isLoading || !data) {
-    return <CubeData ref={cubeRef}>Loading...</CubeData>;
-  }
-
-  if (error) {
-    return <CubeData ref={cubeRef}>Error</CubeData>;
-  }
-
-  return (
-    <CubeData ref={cubeRef}>
-      {data.map(({ id, title, completed }) => (
-        <TodoContainer key={id} $completed={completed}>
-          {title}
-        </TodoContainer>
-      ))}
-    </CubeData>
-  );
-};
-
-export { ToDoByUserId };
+export { ToDoByUserId }
