@@ -1,6 +1,12 @@
 import { FC } from 'react';
 
-import { Page, Form, Title, Input, Button } from '../../components/index';
+import {
+  Page,
+  Form,
+  Title,
+  Input,
+  Button,
+} from '../../shared/components';
 
 const LoginPage: FC = () => {
   return (
