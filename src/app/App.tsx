@@ -1,0 +1,23 @@
+import React, { FC } from 'react';
+
+import LoginPage from '../modules/user/LoginPage';
+import { GuestLayout } from '../layouts';
+import { Providers } from './providers';
+
+function AppInner() {
+  return (
+    <GuestLayout>
+      <LoginPage />
+    </GuestLayout>
+  );
+}
+
+const App: FC = () => {
+  return (
+    <Providers>
+      <AppInner />
+    </Providers>
+  );
+};
+
+export { App };
