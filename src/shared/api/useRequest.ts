@@ -46,7 +46,7 @@ const useRequest = <Data extends any>(
           .then((data) => {
             if (!abortControllerRef.current.signal.aborted) {
               setData(data);
-                setError(null);
+              setError(null);
               requestRef.current = null;
             }
           })
