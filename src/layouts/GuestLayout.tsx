@@ -44,7 +44,7 @@ const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
       <HeaderContainer>
         <StyleLogo>My health</StyleLogo>
         <UnionContainer>
-          <Button>Регистрация</Button>
+          <Button variant="outline">Регистрация</Button>
           <Button>Авторизация</Button>
         </UnionContainer>
       </HeaderContainer>

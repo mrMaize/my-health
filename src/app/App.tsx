@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import LoginPage from '../modules/user/LoginPage';
+import { LoginPage } from '../pages/login';
 import { GuestLayout } from '../layouts';
 import { Providers } from './providers';
 

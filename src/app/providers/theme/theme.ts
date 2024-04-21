@@ -11,8 +11,8 @@ const colors = {
   },
 
   primary: {
-    main: '#a77e53',
-    dark: '#a17149',
+    main: '#7f97e8',
+    dark: '#3a518f',
     light: '#e9dfbf',
     disabled: '#a29381',
   },
