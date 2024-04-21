@@ -1,14 +1,13 @@
 import styled, { css } from 'styled-components';
 
-const Page = styled.div(
+const Avatar = styled.div(
   ({ theme: { colors } }) => css`
-    height: 100vh;
-    width: 100%;
     display: flex;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
     background: ${colors.background.main};
-    align-items: center;
-    justify-content: center;
   `
 );
 
-export default Page;
+export { Avatar };

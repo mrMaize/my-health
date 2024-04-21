@@ -1,8 +1,9 @@
 import Input from './Input';
 import Page from './Page';
-import Form from './Form';
 import Title from './Title';
 
+export { Panel } from './Panel';
+export { Avatar } from './avatar';
 export { Button } from './Button';
 
-export { Page, Form, Title, Input };
+export { Page, Title, Input };

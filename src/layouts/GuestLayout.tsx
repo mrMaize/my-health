@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
-import { Button } from '../shared/components';
+import { Avatar, Button } from '../shared/components';
 
 const LayoutContainer = styled.div(
   ({ theme: { colors, bgImage } }) => css`
@@ -11,6 +11,7 @@ const LayoutContainer = styled.div(
     background: ${colors.background.main};
     background-image: url(${bgImage});
     background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
   `
 );
@@ -26,26 +27,30 @@ const HeaderContainer = styled.header(
   `
 );
 
-const UnionContainer = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`;
-
-const StyleLogo = styled.h1(
-  ({ theme: { fontSize } }) => css`
+const StyledLogo = styled.h1(
+    ({ theme: { fontSize } }) => css`
     font-size: ${fontSize.xl};
+    margin: 0;
   `
 );
+
+const UnionContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
 
 const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <LayoutContainer>
       <HeaderContainer>
-        <StyleLogo>My health</StyleLogo>
+        <UnionContainer>
+          <StyledLogo>My health</StyledLogo>
+        </UnionContainer>
         <UnionContainer>
           <Button variant="outline">Регистрация</Button>
-          <Button>Авторизация</Button>
+          <Button>Авторизоваться</Button>
+          <Avatar />
         </UnionContainer>
       </HeaderContainer>
       {children}
