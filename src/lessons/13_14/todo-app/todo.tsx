@@ -2,9 +2,9 @@ import { FC, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import { useHighlightRender } from '../useHighlightRender';
+import { useRequest } from '../../../shared/api';
 
 import { ToDoByUserId } from './todo-by-user';
-import { useRequest } from '../../../shared/api';
 
 const Container = styled.div`
   display: flex;

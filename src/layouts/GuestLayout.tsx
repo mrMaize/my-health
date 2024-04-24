@@ -1,6 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 import styled, { css } from 'styled-components';
+
 import { Avatar, Button } from '../shared/components';
+import { EButtonVariant } from '../shared/components/Button';
 
 const LayoutContainer = styled.div(
   ({ theme: { colors, bgImage } }) => css`
@@ -28,7 +30,7 @@ const HeaderContainer = styled.header(
 );
 
 const StyledLogo = styled.h1(
-    ({ theme: { fontSize } }) => css`
+  ({ theme: { fontSize } }) => css`
     font-size: ${fontSize.xl};
     margin: 0;
   `
@@ -48,7 +50,7 @@ const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
           <StyledLogo>My health</StyledLogo>
         </UnionContainer>
         <UnionContainer>
-          <Button variant="outline">Регистрация</Button>
+          <Button variant={EButtonVariant.OUTLINE}>Регистрация</Button>
           <Button>Авторизоваться</Button>
           <Avatar />
         </UnionContainer>

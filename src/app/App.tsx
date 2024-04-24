@@ -1,7 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { LoginPage } from '../pages/login';
 import { GuestLayout } from '../layouts';
+
 import { Providers } from './providers';
 
 function AppInner() {

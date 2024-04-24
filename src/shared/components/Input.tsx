@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 const StyledInput = styled.input.attrs(({ type = 'text' }) => ({
@@ -26,21 +27,30 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Input = ({
-  value,
-  label,
-  disabled,
-  type,
-}: {
+type TProps = {
   value: string;
   label: string;
-  disabled: boolean;
-  type: string;
+  disabled?: boolean;
+  type?: string;
+  onChange: (value: string) => void;
+};
+
+const Input: FC<TProps> = ({
+  value,
+  label,
+  disabled = false,
+  type = 'text',
+  onChange,
 }) => {
   return (
     <Container>
       <StyledLabel>{label}</StyledLabel>
-      <StyledInput value={value} disabled={disabled} type={type} />
+      <StyledInput
+        value={value}
+        disabled={disabled}
+        type={type}
+        onChange={(e) => onChange(e?.target?.value || '')}
+      />
     </Container>
   );
 };

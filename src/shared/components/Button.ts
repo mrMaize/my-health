@@ -1,9 +1,12 @@
 import styled, { css, StyleFunction } from 'styled-components';
 
-type ButtonVariant = 'filled' | 'outline';
+export enum EButtonVariant {
+  FILLED = 'filled',
+  OUTLINE = 'outline',
+}
 
 interface IButtonProps {
-  variant?: ButtonVariant;
+  variant?: EButtonVariant;
 }
 
 const variantFn: StyleFunction<IButtonProps> = ({
