@@ -1,15 +1,18 @@
 import { FC, useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 
 import { Panel, Title, Input, Button } from '../../shared/components';
-import { CenteredPage } from '../../layouts';
+import { CenteredPage, GuestLayout } from '../../layouts';
 import { EButtonVariant } from '../../shared/components/Button';
 import { sendRequest } from '../../shared/api/xhr/xhr';
 import { ERequestTypes } from '../../shared/api/xhr/requestConfig';
 
-const auth = getAuth();
-
 const LoginPage: FC = () => {
+  const auth = getAuth();
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
@@ -21,38 +24,47 @@ const LoginPage: FC = () => {
   };
 
   const logIn = () => {
-    createUserWithEmailAndPassword(auth, login, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+    // signInWithEmailAndPassword(auth, login, password)
+    //   .then((userCredential) => {
+    //     // Signed up
+    //     const user = userCredential.user;
+    //     console.log(user);
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+
+    //     console.log(errorCode, errorMessage);
+    //     // ..
+    //   });
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   };
 
   return (
-    <CenteredPage>
-      <Panel>
-        <Title>Авторизация</Title>
-        <form>
-          <Input value={login} onChange={setLogin} label={'Логин'} />
-          <Input
-            label={'Пароль'}
-            type={'password'}
-            value={password}
-            onChange={setPassword}
-          />
-        </form>
-        <Button type="submit" variant={EButtonVariant.FILLED} onClick={logIn}>
-          Войти
-        </Button>
-      </Panel>
-    </CenteredPage>
+    <GuestLayout>
+      <CenteredPage>
+        <Panel>
+          <Title>Авторизация</Title>
+          <form>
+            <Input value={login} onChange={setLogin} label={'Логин'} />
+            <Input
+              label={'Пароль'}
+              type={'password'}
+              value={password}
+              onChange={setPassword}
+            />
+          </form>
+          <Button type="submit" variant={EButtonVariant.FILLED} onClick={logIn}>
+            Войти
+          </Button>
+        </Panel>
+      </CenteredPage>
+    </GuestLayout>
   );
 };
 
-export { LoginPage };
+export default LoginPage;
