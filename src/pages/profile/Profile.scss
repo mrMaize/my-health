@@ -1,0 +1,156 @@
+header {
+ display: block;
+ height: 50px;
+ padding: 10px;
+ margin: auto;
+}
+
+main {
+ padding: 10px;
+ height: 100%;
+}
+
+main section {
+ display: block;
+ margin: auto;
+}
+
+
+footer {
+ margin-top: 20px;
+ padding: 15px 10px;
+ background-color: lightgrey;
+}
+
+/* селектор, как класс с названием `userImage` */
+.userImage {
+ border-radius: 28px;
+ margin-bottom: 20px;
+ box-shadow: 2px -1px 5px 0px #c1b2b2;
+ height: 200px;
+ width: 200px;
+}
+
+.inputTitle {
+ display: block;
+ /* border: 1px solid; */
+}
+
+.inputTitle span {
+ color: red;
+}
+
+.redBorder {
+ border: 3px solid red;
+
+
+ /* margin – отступы от внешней границы блока */
+ margin-top: 50px;
+ margin-left: 50px;
+ margin-bottom: 50px;
+ margin-right: 50px;
+
+ /* 4 свойства выше можно переписать в одну строку перечисляя 4 значения для отсупов: 
+     сверху, справа, снизу, слева */
+ /* margin: 10px 20px 30px 40px; */
+
+ /* Так же свойства выше можно переписать в одну строку перечисляя 2 значения для отсупов, 
+     первое число отработает для верхнего и нижнего отсупов,
+     второе число отработает для отступов справа и слева */
+ /* margin: 10px 20px; */
+
+ 
+ /* Так же можно записать отступы одним значением, оно будет применяться для всех границ элемента */
+ /* margin: 10px; */
+
+
+ /* padding – отступы внутри блока для его элементов */
+ padding-top: 30px;
+ padding-right: 30px;
+ padding-bottom: 30px;
+ padding-left: 30px;
+
+
+ /* Отступы `padding` можно указать в 4 значения или в 2 значения по аналогии с `margin` */
+ /* padding: 10px 20px 30px 40px; */
+ /* padding: 10px 40px; */
+}
+
+.blackBorder {
+ /* border: 1px solid; */
+ padding: 100px;
+}
+
+/* селектор, который внутри применяется ко всем тегам `p` */
+.div p {
+ border: 1px solid red;
+}
+
+.green {
+ border: 2px solid green;
+ margin-right: 50px;
+}
+
+.green {
+ margin-right: none;
+}
+
+.link {
+ color: rgb(0, 0, 0);
+}
+
+/* псевдоселектор, :hover – отрабатывает при наведении на элемент */
+.link:hover {
+ color: brown;
+}
+
+
+/* псевдоселектор, отрабатывает на ссылках, во время нажатия на ссылку */
+.link:active {
+ color: brown;
+}
+
+.link:visited {
+ color: brown;
+}
+
+/* селектор, который применяется в документе ко всем тегам `input` */
+input {
+ padding: 5px 5px 5px 0;
+ outline: none;
+ border: none;
+ border-bottom: 2px solid lightgray;
+ margin-bottom: 20px;
+ background: none;
+ 
+}
+
+input:focus {
+ border-bottom: 2px solid blue;
+}
+
+.displayBlock {
+ display: block;
+}
+
+.genderChoice {
+ margin-bottom: 20px;
+}
+
+.genderChoice input {
+ margin-left: 0;
+ margin-bottom: 5px;
+}
+
+/* Символ `>` означает, что селектор будет применяться
+ только к первым потомкам элемента с классом `.birthDate` */
+.birthDate > span {
+ display: block;
+}
+
+.submitButton {
+ padding: 10px 15px;
+ border: none;
+ background-color: rgb(243, 195, 136);
+ font-size: 16px;
+}

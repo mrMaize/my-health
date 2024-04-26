@@ -1,5 +1,5 @@
 import { FC, useCallback, useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 import { Panel, Title, Input, Button } from '../../shared/components';
@@ -12,17 +12,16 @@ const LoginPage: FC = () => {
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleLogIn = useCallback(async () => {
+  const handleRegister = useCallback(async () => {
     try {
       const auth = getAuth();
-      const userCredential = await signInWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         login,
         password
       );
       const user = userCredential.user;
       const userRefreshToken = user.refreshToken;
-
       console.log(user);
       console.log(user.refreshToken);
 
@@ -32,13 +31,17 @@ const LoginPage: FC = () => {
     } catch (error) {
       console.log(error);
     }
+
+    // fetch('https://jsonplaceholder.typicode.com/posts')
+    //   .then((response) => response.json())
+    //   .then((json) => console.log(json));
   }, [login, password]);
 
   return (
     <GuestLayout>
       <CenteredPage>
         <Panel>
-          <Title>Авторизация</Title>
+          <Title>Регистрация</Title>
           <form>
             <Input value={login} onChange={setLogin} label={'Логин'} />
             <Input
@@ -49,9 +52,9 @@ const LoginPage: FC = () => {
             />
           </form>
           <Button
+            onClick={handleRegister}
             type="submit"
             variant={EButtonVariant.FILLED}
-            onClick={handleLogIn}
           >
             Войти
           </Button>

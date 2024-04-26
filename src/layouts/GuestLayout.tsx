@@ -1,5 +1,6 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useCallback } from 'react';
 import styled, { css } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 import { Avatar, Button } from '../shared/components';
 import { EButtonVariant } from '../shared/components/Button';
@@ -43,6 +44,15 @@ const UnionContainer = styled.div`
 `;
 
 const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
+  const navigate = useNavigate();
+  const handleRegister = useCallback(() => {
+    navigate('/register');
+  }, [navigate]);
+
+  const handleLogin = useCallback(() => {
+    navigate('/login');
+  }, [navigate]);
+
   return (
     <LayoutContainer>
       <HeaderContainer>
@@ -50,8 +60,10 @@ const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
           <StyledLogo>My health</StyledLogo>
         </UnionContainer>
         <UnionContainer>
-          <Button variant={EButtonVariant.OUTLINE}>Регистрация</Button>
-          <Button>Авторизоваться</Button>
+          <Button onClick={handleRegister} variant={EButtonVariant.OUTLINE}>
+            Регистрация
+          </Button>
+          <Button onClick={handleLogin}>Авторизоваться</Button>
           <Avatar />
         </UnionContainer>
       </HeaderContainer>

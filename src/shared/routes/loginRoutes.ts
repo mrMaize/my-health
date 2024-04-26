@@ -11,11 +11,6 @@ export const loginRoutes: TRoutesMap = [
   {
     name: 'userRegister',
     path: '/register',
-    component: () => null,
-  },
-  {
-    name: 'userForgotPassword',
-    path: '/password-reset',
-    component: () => null,
+    component: lazy(() => import('../../pages/login/RegisterPage')),
   },
 ];
