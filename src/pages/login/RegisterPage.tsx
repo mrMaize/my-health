@@ -22,8 +22,6 @@ const LoginPage: FC = () => {
       );
       const user = userCredential.user;
       const userRefreshToken = user.refreshToken;
-      console.log(user);
-      console.log(user.refreshToken);
 
       localStorageManager.setValue('auth_token', userRefreshToken);
 
@@ -31,10 +29,6 @@ const LoginPage: FC = () => {
     } catch (error) {
       console.log(error);
     }
-
-    // fetch('https://jsonplaceholder.typicode.com/posts')
-    //   .then((response) => response.json())
-    //   .then((json) => console.log(json));
   }, [login, password]);
 
   return (

@@ -1,11 +1,11 @@
 import { lazy } from 'react';
 
-import { TRoutesMap } from './interfaces';
+import { EProfileRoutes, TRoutesMap } from './interfaces/interfaces';
 
-export const profileRoutes: TRoutesMap = [
+export const profileRoutes: TRoutesMap<EProfileRoutes> = [
   {
     name: 'profile',
-    path: '/health/profile',
+    path: EProfileRoutes.PROFILE_PAGE,
     component: lazy(() => import('../../pages/profile/Profile')),
   },
 ];

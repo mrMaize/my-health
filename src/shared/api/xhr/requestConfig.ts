@@ -7,5 +7,5 @@ export enum ERequestTypes {
 
 export enum EEndpoints {
   LOCAL_SERVER = 'http://localhost:5000',
-  EXTERNAL_SERVER = 'http://192.168.1.2:5000',
+  // EXTERNAL_SERVER = 'http://192.168.1.2:5000',
 }

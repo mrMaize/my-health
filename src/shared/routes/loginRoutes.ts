@@ -1,16 +1,16 @@
 import { lazy } from 'react';
 
-import { TRoutesMap } from './interfaces';
+import { ELoginRoutes, TRoutesMap } from './interfaces/interfaces';
 
-export const loginRoutes: TRoutesMap = [
+export const loginRoutes: TRoutesMap<ELoginRoutes> = [
   {
     name: 'userLogin',
-    path: '/login',
+    path: ELoginRoutes.LOGIN_PAGE,
     component: lazy(() => import('../../pages/login/LoginPage')),
   },
   {
     name: 'userRegister',
-    path: '/register',
+    path: ELoginRoutes.REGISTER_PAGE,
     component: lazy(() => import('../../pages/login/RegisterPage')),
   },
 ];

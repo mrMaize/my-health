@@ -6,6 +6,7 @@ import { routesMap } from '../../../shared/routes/routes';
 const RouterProvider: FC<PropsWithChildren> = ({ children }) => {
   return (
     <BrowserRouter>
+      {children}
       <Suspense fallback={'Загрузка...'}>
         <Routes>
           {routesMap.map((route) => (
@@ -16,10 +17,8 @@ const RouterProvider: FC<PropsWithChildren> = ({ children }) => {
             />
           ))}
 
-          {/* TODO:// сделать проверку на авторизацию  */}
           <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
-        {children}
       </Suspense>
     </BrowserRouter>
   );
