@@ -1,6 +1,9 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useCallback } from 'react';
 import styled, { css } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+
 import { Avatar, Button } from '../shared/components';
+import { EButtonVariant } from '../shared/components/Button';
 
 const LayoutContainer = styled.div(
   ({ theme: { colors, bgImage } }) => css`
@@ -24,11 +27,12 @@ const HeaderContainer = styled.header(
     height: 60px;
     padding: 10px 30px;
     background: ${colors.white};
+    width: 100%;
   `
 );
 
 const StyledLogo = styled.h1(
-    ({ theme: { fontSize } }) => css`
+  ({ theme: { fontSize } }) => css`
     font-size: ${fontSize.xl};
     margin: 0;
   `
@@ -41,6 +45,15 @@ const UnionContainer = styled.div`
 `;
 
 const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
+  const navigate = useNavigate();
+  const handleRegister = useCallback(() => {
+    navigate('/register');
+  }, [navigate]);
+
+  const handleLogin = useCallback(() => {
+    navigate('/login');
+  }, [navigate]);
+
   return (
     <LayoutContainer>
       <HeaderContainer>
@@ -48,8 +61,10 @@ const GuestLayout: FC<PropsWithChildren> = ({ children }) => {
           <StyledLogo>My health</StyledLogo>
         </UnionContainer>
         <UnionContainer>
-          <Button variant="outline">Регистрация</Button>
-          <Button>Авторизоваться</Button>
+          <Button onClick={handleRegister} variant={EButtonVariant.OUTLINE}>
+            Регистрация
+          </Button>
+          <Button onClick={handleLogin}>Авторизоваться</Button>
           <Avatar />
         </UnionContainer>
       </HeaderContainer>

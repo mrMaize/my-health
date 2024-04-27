@@ -1,5 +1,6 @@
-import backgroundBlue from '../../../resources/background-blue.jpg';
 import { DefaultTheme } from 'styled-components';
+
+import backgroundBlue from '../../../resources/background-blue.jpg';
 
 const colors = {
   white: '#fff',
