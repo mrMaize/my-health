@@ -27,6 +27,7 @@ const HeaderContainer = styled.header(
     height: 60px;
     padding: 10px 30px;
     background: ${colors.white};
+    width: 100%;
   `
 );
 

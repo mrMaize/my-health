@@ -24,7 +24,7 @@ export const sendGet = (type: ERequestTypes, req: string) => {
   });
 };
 
-const sendPost = <S>(type: ERequestTypes, URL: string, params?: S) => {
+const sendPost = (type: ERequestTypes, URL: string, params?: any) => {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();
     request.open(type, URL);
@@ -55,9 +55,9 @@ const sendPost = <S>(type: ERequestTypes, URL: string, params?: S) => {
   });
 };
 
-export const sendRequest = <S>(
+export const sendRequest = (
   type: ERequestTypes,
-  params: { url: string; payload?: S }
+  params: { url: string; payload?: any }
 ) => {
   switch (type) {
     case ERequestTypes.DELETE:
@@ -66,9 +66,9 @@ export const sendRequest = <S>(
 
     case ERequestTypes.PUT:
     case ERequestTypes.POST:
-      return sendPost<S>(type, params.url, params.payload);
+      return sendPost(type, params.url, params.payload);
 
     default:
-      return new Error();
+      return new Error('Reject, request type not set!');
   }
 };
