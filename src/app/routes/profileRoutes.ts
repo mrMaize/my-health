@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
-import { EProfileRoutes, TRoutesMap } from './interfaces/interfaces';
+import { TRoutesMap } from './interfaces/interfaces';
+import { EProfileRoutes } from '../../shared/routes';
 
 export const profileRoutes: TRoutesMap<EProfileRoutes> = [
   {

@@ -3,9 +3,9 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Panel, Title, Input, Button } from '../../shared/components';
-import { CenteredPage, GuestLayout } from '../../layouts';
+import { CenteredPage } from '../../layouts';
 import { EButtonVariant } from '../../shared/components/Button';
-import { EAboutAppRoutes } from '../../shared/routes/interfaces/interfaces';
+import { EAboutAppRoutes } from '../../shared/routes';
 import localStorageManager from '../../shared/localStorage/localStorageManager';
 import { AUTH_REFRESH_TOKEN } from '../../shared/hooks/userAuth/constants';
 
@@ -37,29 +37,27 @@ const LoginPage: FC = () => {
   }, [login, password]);
 
   return (
-    <GuestLayout>
-      <CenteredPage>
-        <Panel>
-          <Title>Авторизация</Title>
-          <form>
-            <Input value={login} onChange={setLogin} label={'Логин'} />
-            <Input
-              label={'Пароль'}
-              type={'password'}
-              value={password}
-              onChange={setPassword}
-            />
-          </form>
-          <Button
-            type="submit"
-            variant={EButtonVariant.FILLED}
-            onClick={handleLogIn}
-          >
-            Войти
-          </Button>
-        </Panel>
-      </CenteredPage>
-    </GuestLayout>
+    <CenteredPage>
+      <Panel>
+        <Title>Авторизация</Title>
+        <form>
+          <Input value={login} onChange={setLogin} label={'Логин'} />
+          <Input
+            label={'Пароль'}
+            type={'password'}
+            value={password}
+            onChange={setPassword}
+          />
+        </form>
+        <Button
+          type="submit"
+          variant={EButtonVariant.FILLED}
+          onClick={handleLogIn}
+        >
+          Войти
+        </Button>
+      </Panel>
+    </CenteredPage>
   );
 };
 

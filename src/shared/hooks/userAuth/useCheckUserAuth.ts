@@ -2,8 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 
 import localStorageManager from '../../localStorage/localStorageManager';
-import { ELoginRoutes } from '../../routes/interfaces/interfaces';
-import { PUBLIC_ROUTES } from '../../routes/routes';
+import { ELoginRoutes, PUBLIC_ROUTES } from '../../routes';
 
 import { AUTH_REFRESH_TOKEN } from './constants';
 

@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
-import { EAboutAppRoutes, TRoutesMap } from './interfaces/interfaces';
+import { TRoutesMap } from './interfaces/interfaces';
+import { EAboutAppRoutes } from '../../shared/routes';
 
 export const aboutAppRoutes: TRoutesMap<EAboutAppRoutes> = [
   {

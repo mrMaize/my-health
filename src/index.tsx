@@ -4,7 +4,6 @@ import 'normalize.css';
 import { initializeApp } from 'firebase/app';
 
 import { App } from './app';
-import { Providers } from './app/providers';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
