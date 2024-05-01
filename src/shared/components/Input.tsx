@@ -1,30 +1,49 @@
 import { FC } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { space, SpaceProps } from 'styled-system';
 
 const StyledInput = styled.input.attrs(({ type = 'text' }) => ({
   type,
-}))`
-  box-sizing: border-box;
-  width: 100%;
-  outline: none;
-  border-radius: 5px;
-  font-weight: 400;
-  color: ${({ disabled }) => (disabled ? 'grey' : '#282c34')};
-  font-size: 20px;
-  border: 1px solid ${({ disabled }) => (disabled ? 'lightgrey' : '#282c34')};
-  background-color: ${({ disabled }) => (disabled ? 'whitesmoke' : 'white')};
-`;
+}))(
+  ({ theme: { colors, borderRadius, fontSize }, disabled }) => css`
+    height: 35px;
+    width: 100%;
+    padding: 0 10px;
+    border-radius: ${borderRadius.xxs};
+    color: ${colors.text.primary};
+    font-weight: 400;
+    font-size: ${fontSize.l};
+    border: 1px solid ${colors.text.primary};
 
-const StyledLabel = styled.span`
-  display: block;
-  font-size: 14px;
-  font-weight: 500;
-  color: #282c34;
-`;
+    ${disabled &&
+    css`
+      color: ${colors.text.disabled};
+      border-color: ${colors.text.disabled};
+      background: ${colors.background.disabled};
+    `}
+  `
+);
 
-const Container = styled.div`
-  margin-bottom: 15px;
-  width: 100%;
+const StyledLabel = styled.span<{ disabled?: boolean }>(
+  ({ theme: { fontSize, colors }, disabled }) => css`
+    display: block;
+    font-size: ${fontSize.m};
+    font-weight: 400;
+    color: ${colors.text.secondary};
+    margin-bottom: 8px;
+
+    ${disabled &&
+    css`
+      color: ${colors.text.disabled};
+    `}
+  `
+);
+
+const Container = styled.div<SpaceProps>`
+  display: flex;
+  flex-direction: column;
+
+  ${space};
 `;
 
 type TProps = {
@@ -35,16 +54,17 @@ type TProps = {
   onChange: (value: string) => void;
 };
 
-const Input: FC<TProps> = ({
+const Input: FC<TProps & SpaceProps> = ({
   value,
   label,
   disabled = false,
   type = 'text',
   onChange,
+  ...other
 }) => {
   return (
-    <Container>
-      <StyledLabel>{label}</StyledLabel>
+    <Container {...other}>
+      <StyledLabel disabled={disabled}>{label}</StyledLabel>
       <StyledInput
         value={value}
         disabled={disabled}

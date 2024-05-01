@@ -8,14 +8,14 @@ const colors = {
   background: {
     main: '#587877',
     dark: '#806491',
-    disabled: '#9b969d',
+    disabled: '#f1f1f1',
   },
 
   primary: {
     main: '#7f97e8',
     dark: '#3a518f',
     light: '#e9dfbf',
-    disabled: '#a29381',
+    disabled: '#58607e',
   },
 
   success: {

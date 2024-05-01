@@ -1,4 +1,5 @@
 import styled, { css, StyleFunction } from 'styled-components';
+import { SpaceProps, space, width, WidthProps } from 'styled-system';
 
 export enum EButtonVariant {
   FILLED = 'filled',
@@ -25,7 +26,7 @@ const variantFn: StyleFunction<IButtonProps> = ({
       }
 
       &:disabled {
-        cursor: none;
+        cursor: default;
         color: ${colors.primary.disabled};
         border-color: ${colors.primary.disabled};
       }
@@ -41,16 +42,19 @@ const variantFn: StyleFunction<IButtonProps> = ({
     }
 
     &:disabled {
-      cursor: none;
+      cursor: default;
+      color: ${colors.text.disabled};
       background: ${colors.primary.disabled};
     }
   `;
 };
 
-const Button = styled.button<IButtonProps>(
+const Button = styled.button<IButtonProps & SpaceProps & WidthProps>(
   ({ theme: { fontSize, borderRadius } }) => css`
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: fit-content;
     height: 40px;
     padding: 10px 20px;
     font-size: ${fontSize.l};
@@ -63,6 +67,8 @@ const Button = styled.button<IButtonProps>(
       color 100ms ease-in-out;
 
     ${variantFn};
+    ${space};
+    ${width};
   `
 );
 

@@ -21,6 +21,10 @@ const globalStyles = css`
     }
   }
 
+  input {
+    outline: none;
+  }
+
   button {
     border: none;
   }

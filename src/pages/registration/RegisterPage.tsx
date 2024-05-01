@@ -1,8 +1,8 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, ReactEventHandler, useCallback, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-import { Panel, Title, Input, Button } from '../../shared/components';
+import { Panel, Title, Input, Button, Form } from '../../shared/components';
 import { CenteredPage } from '../../layouts';
 import { EButtonVariant } from '../../shared/components/Button';
 import localStorageManager from '../../shared/localStorage/localStorageManager';
@@ -10,32 +10,41 @@ import localStorageManager from '../../shared/localStorage/localStorageManager';
 const RegisteredPage: FC = () => {
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [repeatPassword, setRepeatPassword] = useState<string>('');
+
   const navigate = useNavigate();
 
-  const handleRegister = useCallback(async () => {
-    try {
-      const auth = getAuth();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        login,
-        password
-      );
-      const user = userCredential.user;
-      const userRefreshToken = user.refreshToken;
+  const handleRegister = useCallback<ReactEventHandler<HTMLFormElement>>(
+    async (event) => {
+      event.preventDefault();
 
-      localStorageManager.setValue('auth_token', userRefreshToken);
+      try {
+        const auth = getAuth();
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          login,
+          password
+        );
+        const user = userCredential.user;
+        const userRefreshToken = user.refreshToken;
 
-      navigate('/health/profile');
-    } catch (error) {
-      console.log(error);
-    }
-  }, [login, password]);
+        localStorageManager.setValue('auth_token', userRefreshToken);
+
+        navigate('/health/profile');
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [login, password]
+  );
+
+  const isFormValid = !!login && !!password && password === repeatPassword;
 
   return (
     <CenteredPage>
-      <Panel>
-        <Title>Регистрация</Title>
-        <form>
+      <Panel width={350}>
+        <Title mb="20px">Регистрация</Title>
+        <Form onSubmit={handleRegister} gap={20} flexGrow={1}>
           <Input value={login} onChange={setLogin} label={'Логин'} />
           <Input
             label={'Пароль'}
@@ -43,14 +52,22 @@ const RegisteredPage: FC = () => {
             value={password}
             onChange={setPassword}
           />
-        </form>
-        <Button
-          onClick={handleRegister}
-          type="submit"
-          variant={EButtonVariant.FILLED}
-        >
-          Войти
-        </Button>
+          <Input
+            label="Повторите пароль"
+            type="password"
+            value={repeatPassword}
+            onChange={setRepeatPassword}
+          />
+          <Button
+            type="submit"
+            variant={EButtonVariant.FILLED}
+            mt="auto"
+            width="100%"
+            disabled={!isFormValid}
+          >
+            Зарегистрироваться
+          </Button>
+        </Form>
       </Panel>
     </CenteredPage>
   );
