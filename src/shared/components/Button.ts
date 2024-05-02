@@ -6,8 +6,11 @@ export enum EButtonVariant {
   OUTLINE = 'outline',
 }
 
+type SizeType = 'xs' | 's' | 'm' | 'l';
+
 interface IButtonProps {
   variant?: EButtonVariant;
+  size?: SizeType;
 }
 
 const variantFn: StyleFunction<IButtonProps> = ({
@@ -49,18 +52,35 @@ const variantFn: StyleFunction<IButtonProps> = ({
   `;
 };
 
+const sizeFn: StyleFunction<IButtonProps> = ({
+  size = 'm',
+  theme: { fontSize, borderRadius },
+}) => {
+  if (size === 's') {
+    return css`
+      height: 30px;
+      padding: 5px 10px;
+      font-size: ${fontSize.s};
+      border-radius: ${borderRadius.s};
+    `;
+  }
+
+  return css`
+    height: 40px;
+    padding: 10px 20px;
+    font-size: ${fontSize.l};
+    border-radius: ${borderRadius.m};
+  `;
+};
+
 const Button = styled.button<IButtonProps & SpaceProps & WidthProps>(
   ({ theme: { fontSize, borderRadius } }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
     width: fit-content;
-    height: 40px;
-    padding: 10px 20px;
-    font-size: ${fontSize.l};
     font-weight: 600;
     cursor: pointer;
-    border-radius: ${borderRadius.m};
     transition:
       background 100ms ease-in-out,
       border-color 100ms ease-in-out,
@@ -69,6 +89,7 @@ const Button = styled.button<IButtonProps & SpaceProps & WidthProps>(
     ${variantFn};
     ${space};
     ${width};
+    ${sizeFn};
   `
 );
 

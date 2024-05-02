@@ -1,23 +1,6 @@
-import styled, { css, StyleFunction } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { flexGrow, FlexGrowProps } from 'styled-system';
-
-interface IGapFunc {
-  gap?: string | number;
-}
-
-const gapFunc: StyleFunction<IGapFunc> = ({ gap }) => {
-  let currentGap;
-
-  if (typeof gap === 'number' && gap !== 0) {
-    currentGap = `${gap}px`;
-  } else if (typeof gap === 'string') {
-    currentGap = gap;
-  }
-
-  return css`
-    gap: ${currentGap};
-  `;
-};
+import { gapFunc, IGapFunc } from './utils/gapFunc';
 
 const Form = styled.form<IGapFunc & FlexGrowProps>(
   () => css`

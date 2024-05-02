@@ -6,5 +6,6 @@ export { Panel } from './Panel';
 export { Avatar } from './avatar';
 export { Button } from './Button';
 export { Form } from './Form';
+export { Container } from './Container';
 
 export { Page, Title, Input };
