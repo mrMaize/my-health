@@ -1,12 +1,7 @@
 import { useContext } from 'react';
-import { HandlersModalContext } from '../modal-context';
+import { HandlersModalContext, IHandlersModalContext } from '../modal-context';
 
-interface IUseModalControllerReturnProps {
-  onModalOpen: (type: string, props?: object) => void;
-  onModalClose: VoidFunction;
-}
-
-const useModalController = (): IUseModalControllerReturnProps => {
+const useModalController = (): IHandlersModalContext => {
   const modalHandlers = useContext(HandlersModalContext);
 
   if (!modalHandlers) {

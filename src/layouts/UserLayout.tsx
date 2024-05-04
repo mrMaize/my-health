@@ -1,21 +1,14 @@
-import { FC, PropsWithChildren, useRef, useState } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
 
-import {
-  Avatar,
-  Button,
-  Container,
-  ContextMenu,
-  ContextMenuItem,
-  Dropdown,
-} from '../shared/components';
+import { Avatar, Button, Container } from '../shared/components';
 import { Header, LayoutContainer } from './components';
 import { Gender, IUser } from '../shared/types/user';
 import { ANALYZES, MED_CARD_ROUTS } from '../shared/routes';
 import { useAuth } from '../entities/auth';
-import { ANALYZE_MODAL_TYPE, AnalyzeModal } from '../entities/analyze';
+import { ANALYZE_MODAL_TYPE } from '../entities/analyze';
 import { useModalController } from '../shared/modal-controller';
 
 const MOCK_USER_DATA: IUser = {
@@ -34,9 +27,6 @@ const TitleNav = styled.nav<SpaceProps>`
 `;
 
 const UserLayout: FC<PropsWithChildren> = ({ children }) => {
-  const anchorRef = useRef<HTMLButtonElement>(null);
-  const [isOpenContextMenu, setOpenContextMenu] = useState(false);
-
   const user = MOCK_USER_DATA;
 
   const { setAuth } = useAuth();
@@ -58,24 +48,15 @@ const UserLayout: FC<PropsWithChildren> = ({ children }) => {
           +Добавить анализ
         </Button>
         <Container
-          ref={anchorRef}
           as="button"
           alignItems="center"
           gap={10}
           ml="auto"
-          onClick={() => setOpenContextMenu(true)}
+          onClick={() => setAuth(false)}
         >
           {user!.name ?? user!.email}
           <Avatar />
         </Container>
-        <ContextMenu
-          isOpen={isOpenContextMenu}
-          anchorEl={anchorRef.current}
-          setOpen={setOpenContextMenu}
-        >
-          <ContextMenuItem label="Профиль" as={Link} to={'/dddd'} />
-          <ContextMenuItem label="Выйти" onClick={() => setAuth(false)} />
-        </ContextMenu>
       </Header>
       {children}
     </LayoutContainer>

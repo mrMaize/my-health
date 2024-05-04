@@ -14,5 +14,5 @@ interface IPropsModalContext {
 
 const PropsModalContext = createContext<IPropsModalContext | null>(null);
 
-export type { IPropsModalContext };
+export type { IPropsModalContext, IHandlersModalContext };
 export { HandlersModalContext, PropsModalContext };

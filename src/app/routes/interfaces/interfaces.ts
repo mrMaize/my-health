@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-interface IRoute {
+export interface IRoute {
   name: string;
   path?: string;
   component: FC<any>;

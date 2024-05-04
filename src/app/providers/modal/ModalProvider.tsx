@@ -1,5 +1,8 @@
-import { FC, PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { HandlersModalContext, PropsModalContext } from './modal-context';
+import { FC, PropsWithChildren, useMemo, useState } from 'react';
+import {
+  HandlersModalContext,
+  PropsModalContext,
+} from '../../../shared/modal-controller';
 
 const MODAL_PROPS_INITIAL_VALUES = {
   modalType: null,

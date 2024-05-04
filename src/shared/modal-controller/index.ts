@@ -1,3 +1,3 @@
 export { ModalController } from './ModalController';
 export { useModalController } from './hooks/useModalController';
-export { ModalProvider } from './ModalProvider';
+export { PropsModalContext, HandlersModalContext } from './modal-context';

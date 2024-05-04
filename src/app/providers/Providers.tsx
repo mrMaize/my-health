@@ -3,7 +3,7 @@ import { FC, PropsWithChildren } from 'react';
 import { ThemeProvider } from './theme';
 import RouterProvider from './router/RouterProvider';
 import { AuthProvider } from './auth/AuthProvider';
-import { ModalProvider } from '../../shared/modal-controller';
+import { ModalProvider } from './modal/ModalProvider';
 
 const Providers: FC<PropsWithChildren> = ({ children }) => {
   return (
