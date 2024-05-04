@@ -3,7 +3,7 @@ import { lazy } from 'react';
 import { TRoutesMap } from './interfaces/interfaces';
 import { ELoginRoutes } from '../../shared/routes';
 
-export const loginRoutes: TRoutesMap<ELoginRoutes> = [
+export const loginRoutes: TRoutesMap = [
   {
     name: 'userLogin',
     path: ELoginRoutes.LOGIN_PAGE,

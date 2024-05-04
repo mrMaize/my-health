@@ -7,5 +7,7 @@ export { Avatar } from './avatar';
 export { Button } from './Button';
 export { Form } from './Form';
 export { Container } from './Container';
+export { Dropdown } from './dropdown';
+export { ContextMenu, ContextMenuItem } from './context-menu';
 
 export { Page, Title, Input };

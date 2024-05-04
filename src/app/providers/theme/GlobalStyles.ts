@@ -32,6 +32,12 @@ const globalStyles = css`
 
   button {
     border: none;
+    background: initial;
+    cursor: pointer;
+
+    &:disabled {
+      cursor: default;
+    }
   }
 `;
 

@@ -6,7 +6,7 @@ export enum EButtonVariant {
   OUTLINE = 'outline',
 }
 
-type SizeType = 'xs' | 's' | 'm' | 'l';
+type SizeType = 'xs' | 's' | 'm' | 'l' | 'square';
 
 interface IButtonProps {
   variant?: EButtonVariant;
@@ -56,6 +56,15 @@ const sizeFn: StyleFunction<IButtonProps> = ({
   size = 'm',
   theme: { fontSize, borderRadius },
 }) => {
+  if (size === 'square') {
+    return css`
+      height: 30px;
+      width: 30px;
+      font-size: ${fontSize.s};
+      border-radius: ${borderRadius.xxs};
+    `;
+  }
+
   if (size === 's') {
     return css`
       height: 30px;

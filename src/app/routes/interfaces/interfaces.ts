@@ -1,14 +1,10 @@
-import { ComponentType } from 'react';
+import { FC } from 'react';
 
-import { ELoginRoutes, EProfileRoutes, EAboutAppRoutes } from '../../../shared/routes';
-
-interface IRoute<S> {
+interface IRoute {
   name: string;
-  path?: S;
-  component: ComponentType<React.PropsWithChildren<unknown>>;
+  path?: string;
+  component: FC<any>;
   exact?: boolean;
 }
 
-export type TRouteNames = ELoginRoutes | EProfileRoutes | EAboutAppRoutes;
-
-export type TRoutesMap<S> = Array<IRoute<S>>;
+export type TRoutesMap = Array<IRoute>;
