@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Panel, Title, Input, Button, Form } from '../../shared/components';
 import { CenteredPage } from '../../layouts';
 import { EButtonVariant } from '../../shared/components/Button';
-import { EAboutAppRoutes } from '../../shared/routes';
+import { STARTING_PAGE_ROUT } from '../../shared/routes';
 import localStorageManager from '../../shared/localStorage/localStorageManager';
 import { AUTH_REFRESH_TOKEN } from '../../shared/hooks/userAuth/constants';
 import { useAuth } from '../../entities/auth';
@@ -37,7 +37,7 @@ const LoginPage: FC = () => {
 
         localStorageManager.setValue(AUTH_REFRESH_TOKEN, userRefreshToken);
 
-        navigate(location.state?.urlToGoAfter || EAboutAppRoutes.ABOUT_PAGE, {
+        navigate(location.state?.urlToGoAfter || STARTING_PAGE_ROUT, {
           replace: true,
         });
       } catch (error) {

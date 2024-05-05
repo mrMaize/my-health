@@ -7,10 +7,6 @@ export enum EProfileRoutes {
   PROFILE_PAGE = '/health/profile',
 }
 
-export enum EAboutAppRoutes {
-  ABOUT_PAGE = '/health/about',
-}
-
 export const STARTING_PAGE_ROUT = '/';
 
 export const MED_CARD_ROUTS = {
