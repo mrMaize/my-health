@@ -45,7 +45,7 @@ const LoginPage: FC = () => {
         console.log(error);
       }
     },
-    [login, password]
+    [location.state?.urlToGoAfter, login, navigate, password, setAuth]
   );
 
   const isFormValid = !!login && !!password;

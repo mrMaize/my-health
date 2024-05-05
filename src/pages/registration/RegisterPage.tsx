@@ -35,7 +35,7 @@ const RegisteredPage: FC = () => {
         console.log(error);
       }
     },
-    [login, password]
+    [login, navigate, password]
   );
 
   const isFormValid = !!login && !!password && password === repeatPassword;

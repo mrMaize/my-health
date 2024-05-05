@@ -30,6 +30,7 @@ const ModalProvider: FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <HandlersModalContext.Provider value={modalHandlers}>
+      {/* eslint-disable react/jsx-no-constructed-context-values */}
       <PropsModalContext.Provider value={{ modalType, modalProps }}>
         {children}
       </PropsModalContext.Provider>
