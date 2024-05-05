@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Avatar, Button, Container } from '../shared/components';
 import { EButtonVariant } from '../shared/components/Button';
+
 import { Header, LayoutContainer } from './components';
 
 const GuestLayout: FC<PropsWithChildren> = ({ children }) => {

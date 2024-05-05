@@ -19,22 +19,22 @@ export const useCheckUserAuth = () => {
   useEffect(() => {
     if (isPublicRoute) {
       return;
-    } else {
-      if (refreshToken) {
-        return;
-      }
-
-      if (!refreshToken) {
-        console.log('we go after login to:', {
-          urlToGoAfter: location.pathname,
-        });
-
-        navigate(ELoginRoutes.LOGIN_PAGE, {
-          state: {
-            urlToGoAfter: location.pathname,
-          },
-        });
-      }
     }
-  }, [isPublicRoute, refreshToken, navigate]);
+
+    if (refreshToken) {
+      return;
+    }
+
+    if (!refreshToken) {
+      console.log('we go after login to:', {
+        urlToGoAfter: location.pathname,
+      });
+
+      navigate(ELoginRoutes.LOGIN_PAGE, {
+        state: {
+          urlToGoAfter: location.pathname,
+        },
+      });
+    }
+  }, [isPublicRoute, refreshToken, navigate, location.pathname]);
 };

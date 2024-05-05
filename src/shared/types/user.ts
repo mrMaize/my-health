@@ -9,6 +9,6 @@ export interface IUser {
   name?: string;
   birthdate?: string;
   email: string;
-  cmi?: string; //омс;
-  vhi?: string; //дмс;
+  cmi?: string; // омс;
+  vhi?: string; // дмс;
 }

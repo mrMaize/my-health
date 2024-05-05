@@ -23,6 +23,7 @@ const LoginPage: FC = () => {
       event.preventDefault();
 
       setAuth(true);
+
       return;
 
       try {
@@ -54,10 +55,10 @@ const LoginPage: FC = () => {
       <Panel height={400} width={300}>
         <Title mb="20px">Авторизация</Title>
         <Form onSubmit={handleLogIn} gap={20} flexGrow={1}>
-          <Input value={login} onChange={setLogin} label={'Логин'} />
+          <Input value={login} onChange={setLogin} label="Логин" />
           <Input
-            label={'Пароль'}
-            type={'password'}
+            label="Пароль"
+            type="password"
             value={password}
             onChange={setPassword}
           />

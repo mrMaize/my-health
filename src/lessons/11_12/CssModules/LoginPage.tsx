@@ -9,12 +9,12 @@ const LoginPage: FC = () => {
         <h1 className={styles.header}>Авторизация</h1>
         <div className={styles.login}>
           <span>Логин</span>
-          <input type={'text'} />
+          <input type="text" />
         </div>
 
         <div className={styles.password}>
           <span>Пароль</span>
-          <input type={'password'} />
+          <input type="password" />
         </div>
 
         <button className={styles.loginButton}>Войти</button>

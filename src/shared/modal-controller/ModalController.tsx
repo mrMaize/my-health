@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { usePropsModalContext } from './hooks/usePropsModalContext';
 import { useModalController } from './hooks/useModalController';
 

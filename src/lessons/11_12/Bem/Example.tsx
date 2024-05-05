@@ -8,13 +8,13 @@ const BemExample = () => (
         {/* (!) Название элемента семантически должно отвечать на поврос "что это?"*/}
 
         {/* элементы должны быть строго внутри блока */}
-        <div className="logo__title"></div>
+        <div className="logo__title" />
         <img className="logo__image" src="" alt="" />
       </div>
       <div className="menu">
         <div className="menu__list">
           {/* Допустима вложенность элементов друг в друга, но блок у элементов все равно один и тот же */}
-          <div className="menu__list-item"></div>
+          <div className="menu__list-item" />
         </div>
       </div>
 
@@ -22,39 +22,39 @@ const BemExample = () => (
         {/* Допустима глубокая вложенность элементов, но привязаны он должны быть к одному блоку */}
         <div className="block__elem1">
           <div className="block__elem2">
-            <div className="blok__elem3"></div>
+            <div className="blok__elem3" />
           </div>
         </div>
       </div>
 
       <div className="page-block">
         {/* Название блока и элемента составное, это допустимо */}
-        <div className="page-block__inner-page-block"></div>
+        <div className="page-block__inner-page-block" />
       </div>
 
       {/* недопустимо доставать элементы за пределы блока */}
-      <div className="blok__elem3"></div>
+      <div className="blok__elem3" />
 
       {/* (!) Название модификатора семантически должно отвечать на поврос "какой он?"*/}
 
       {/* Модификаторы через двойное тире --disabled – так принято во всем мире */}
-      <div className="block__element--disabled"></div>
+      <div className="block__element--disabled" />
 
       {/* Модификаторы через нижнее подчеркинвание _disabled – так принято в Яндексе */}
-      <div className="block__element_disabled"></div>
+      <div className="block__element_disabled" />
 
       {/* Имя модификатора может быть составным */}
-      <div className="block__element--theme-winter"></div>
-      <div className="block__element--size-lg"></div>
+      <div className="block__element--theme-winter" />
+      <div className="block__element--size-lg" />
 
       {/* Имя модификатора может быть булевым значением */}
-      <div className="block__ele--focus"></div>
+      <div className="block__ele--focus" />
 
       {/* Модификатор может быть без элемента, напримре, у блока */}
-      <div className="block__ele--focus"></div>
+      <div className="block__ele--focus" />
 
       {/* Модификатор НЕ может быть сам по себе */}
-      <div className="--focus"></div>
+      <div className="--focus" />
     </div>
   </div>
 );

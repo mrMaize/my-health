@@ -6,20 +6,20 @@ import './PreProcessed/LoginPage.scss';
 
 const LoginPage: FC = () => {
   return (
-    <div className={'page'}>
-      <div className={'wrapper'}>
-        <h1 className={'header'}>Авторизация</h1>
-        <div className={'login'}>
+    <div className="page">
+      <div className="wrapper">
+        <h1 className="header">Авторизация</h1>
+        <div className="login">
           <span>Логин</span>
-          <input type={'text'} />
+          <input type="text" />
         </div>
 
-        <div className={'password'}>
+        <div className="password">
           <span>Пароль</span>
-          <input type={'password'} />
+          <input type="password" />
         </div>
 
-        <button className={'login-button'}>Войти</button>
+        <button className="login-button">Войти</button>
       </div>
     </div>
   );

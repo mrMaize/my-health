@@ -45,10 +45,10 @@ const RegisteredPage: FC = () => {
       <Panel width={350}>
         <Title mb="20px">Регистрация</Title>
         <Form onSubmit={handleRegister} gap={20} flexGrow={1}>
-          <Input value={login} onChange={setLogin} label={'Логин'} />
+          <Input value={login} onChange={setLogin} label="Логин" />
           <Input
-            label={'Пароль'}
-            type={'password'}
+            label="Пароль"
+            type="password"
             value={password}
             onChange={setPassword}
           />

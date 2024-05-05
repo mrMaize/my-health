@@ -5,7 +5,7 @@ const Profile: FC = () => {
   return (
     <>
       <header>
-        <h1 className={'pageHeader'}>Профиль</h1>
+        <h1 className="pageHeader">Профиль</h1>
       </header>
 
       <main>

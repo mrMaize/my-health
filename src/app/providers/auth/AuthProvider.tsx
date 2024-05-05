@@ -1,4 +1,5 @@
 import { FC, PropsWithChildren, useMemo, useState } from 'react';
+
 import { AuthConsumer } from '../../../entities/auth';
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {

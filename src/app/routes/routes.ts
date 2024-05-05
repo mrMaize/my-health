@@ -1,10 +1,10 @@
-import { IRoute, TRoutesMap } from './interfaces/interfaces';
-import { loginRoutes } from './loginRoutes';
-import { profileRoutes } from './profileRoutes';
-
 import { lazy } from 'react';
 
 import { STARTING_PAGE_ROUT } from '../../shared/routes';
+
+import { IRoute, TRoutesMap } from './interfaces/interfaces';
+import { loginRoutes } from './loginRoutes';
+import { profileRoutes } from './profileRoutes';
 
 export const startingAppRoutes: IRoute = {
   name: 'userLogin',

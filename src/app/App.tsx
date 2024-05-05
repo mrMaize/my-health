@@ -1,13 +1,14 @@
 import { FC, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Providers } from './providers';
-import { guestRoutesMap, userRoutesMap } from './routes/routes';
 import { GuestLayout, UserLayout } from '../layouts';
 import { useCheckUserAuth } from '../shared/hooks/userAuth/useCheckUserAuth';
 import { useAuth } from '../entities/auth';
 import { ModalController } from '../shared/modal-controller';
 import { AnalyzeModal, ANALYZE_MODAL_TYPE } from '../entities/analyze';
+
+import { guestRoutesMap, userRoutesMap } from './routes/routes';
+import { Providers } from './providers';
 
 const AppInner: FC = () => {
   useCheckUserAuth();
@@ -17,7 +18,7 @@ const AppInner: FC = () => {
   if (isAuth) {
     return (
       <UserLayout>
-        <Suspense fallback={'Загрузка...'}>
+        <Suspense fallback="Загрузка...">
           <Routes>
             {userRoutesMap.map((route) => (
               <Route
@@ -36,7 +37,7 @@ const AppInner: FC = () => {
 
   return (
     <GuestLayout>
-      <Suspense fallback={'Загрузка...'}>
+      <Suspense fallback="Загрузка...">
         <Routes>
           {guestRoutesMap.map((route) => (
             <Route

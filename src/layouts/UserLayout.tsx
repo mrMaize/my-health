@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
 
 import { Avatar, Button, Container } from '../shared/components';
-import { Header, LayoutContainer } from './components';
 import { Gender, IUser } from '../shared/types/user';
 import { ANALYZES, MED_CARD_ROUTS } from '../shared/routes';
 import { useAuth } from '../entities/auth';
 import { ANALYZE_MODAL_TYPE } from '../entities/analyze';
 import { useModalController } from '../shared/modal-controller';
+
+import { Header, LayoutContainer } from './components';
 
 const MOCK_USER_DATA: IUser = {
   email: 'user@gmail.com',

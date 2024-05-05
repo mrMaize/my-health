@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { HandlersModalContext, IHandlersModalContext } from '../modal-context';
 
 const useModalController = (): IHandlersModalContext => {

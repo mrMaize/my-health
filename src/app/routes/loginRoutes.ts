@@ -1,7 +1,8 @@
 import { lazy } from 'react';
 
-import { TRoutesMap } from './interfaces/interfaces';
 import { ELoginRoutes } from '../../shared/routes';
+
+import { TRoutesMap } from './interfaces/interfaces';
 
 export const loginRoutes: TRoutesMap = [
   {

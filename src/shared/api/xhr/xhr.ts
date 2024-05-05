@@ -5,6 +5,7 @@ export const sendGet = (type: ERequestTypes, req: string) => {
     const request = new XMLHttpRequest();
     request.open(type, req, true);
     request.setRequestHeader('Content-Type', 'application/json');
+
     request.onload = () => {
       if (request.status === 200) {
         resolve(request.response);
