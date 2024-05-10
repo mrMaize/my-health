@@ -1,10 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 import { Provider } from 'react-redux';
 
-import { store } from '../../store/root';
+import store from '../../store/store';
 
-const StorageProvider: FC<PropsWithChildren> = ({ children }) => {
+const StoreProvider: FC<PropsWithChildren> = ({ children }) => {
   return <Provider store={store}>{children}</Provider>;
 };
 
-export { StorageProvider };
+export { StoreProvider };

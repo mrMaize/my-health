@@ -369,6 +369,17 @@ export const ExampleComponent = ({ value }) => {
 };
 ```
 
+
+
+1. `npm i react-redux redux`
+2. `createStore`
+3. `combineReducers`
+4. 
+
+
+
+
+
 ## Какая есть альтернатива Redux?
 
 1. MobX
