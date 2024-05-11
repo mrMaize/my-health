@@ -1,7 +1,11 @@
 import { FC } from 'react';
 
+import { useIsAuth } from '../../entities/auth/model/selectors';
+
 const StartingPage: FC = () => {
-  return <div>This is about app page!</div>;
+  const isUserAuth = useIsAuth();
+
+  return <div>{`Пользователь авторизовано: ${isUserAuth ? 'Да' : 'Нет'}`}</div>;
 };
 
 export default StartingPage;

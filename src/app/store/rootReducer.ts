@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { authReducer } from '../../entities/auth/model/reducer';
-import { userReducer } from '../../entities/user/model/reducer';
+import userReducer from '../../entities/user/model/reducer';
+import authReducer from '../../entities/auth/model/reducer';
 
 const rootReducers = combineReducers({
   auth: authReducer,

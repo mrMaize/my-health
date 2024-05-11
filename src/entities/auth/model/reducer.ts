@@ -1,38 +1,24 @@
-import { authTypes } from './actionTypes';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface IAuthState {
   isAuth: boolean;
-  token: null | string;
-}
-
-interface IAction<T = any> {
-  type: string;
-  payload: T;
 }
 
 const initialState: IAuthState = {
   isAuth: false,
-  token: null,
 };
 
-const authReducer = (state: IAuthState = initialState, action: IAction) => {
-  switch (action.type) {
-    case authTypes.setAuth: {
-      const { payload } = action;
+const authReducer = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    setUserAuth: (state, action: PayloadAction<IAuthState['isAuth']>) => {
+      state.isAuth = action.payload;
+    },
+  },
+});
 
-      return {
-        ...state,
-        isAuth: payload.isAuth,
-        token: payload.token,
-      };
-    }
+export const { setUserAuth } = authReducer.actions;
+export default authReducer.reducer;
 
-    default:
-      return {
-        ...state,
-      };
-  }
-};
-
-export { authReducer };
 export type { IAuthState };

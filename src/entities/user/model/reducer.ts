@@ -1,24 +1,26 @@
-import { userActionTypes } from './actionTypes';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-const initialState = {};
+import { IUser } from '../../../shared/types/user';
 
-const userReducer = (
-  state = initialState,
-  action: { type: string; payload: any }
-) => {
-  switch (action.type) {
-    case userActionTypes.setUser: {
-      const { user } = action.payload;
-
-      return {
-        ...state,
-        user,
-      };
-    }
-
-    default:
-      return { ...state };
-  }
+type IUserState = {
+  userData: null | IUser;
 };
 
-export { userReducer };
+const initialState: IUserState = {
+  userData: null,
+};
+
+const userReducer = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    setUser: (state, action: PayloadAction<IUserState['userData']>) => {
+      state.userData = action.payload;
+    },
+  },
+});
+
+export const { setUser } = userReducer.actions;
+export default userReducer.reducer;
+
+export type { IUserState };

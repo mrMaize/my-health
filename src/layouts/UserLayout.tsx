@@ -1,18 +1,20 @@
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
+import { useDispatch } from 'react-redux';
 
 import { Avatar, Button, Container } from '../shared/components';
 import { Gender, IUser } from '../shared/types/user';
 import { ANALYZES, MED_CARD_ROUTS } from '../shared/routes';
-import { useAuth } from '../entities/auth';
 import { ANALYZE_MODAL_TYPE } from '../entities/analyze';
 import { useModalController } from '../shared/modal-controller';
+import { setUserAuth } from '../entities/auth/model/reducer';
+import { setUser } from '../entities/user/model/reducer';
 
 import { Header, LayoutContainer } from './components';
 
-const MOCK_USER_DATA: IUser = {
+export const MOCK_USER_DATA: IUser = {
   email: 'user@gmail.com',
   gender: Gender.male,
   name: 'Иллион Александрович',
@@ -28,11 +30,18 @@ const TitleNav = styled.nav<SpaceProps>`
 `;
 
 const UserLayout: FC<PropsWithChildren> = ({ children }) => {
+  const dispatch = useDispatch();
+
   const user = MOCK_USER_DATA;
 
-  const { setAuth } = useAuth();
+  // const { setAuth } = useAuth();
 
   const { onModalOpen } = useModalController();
+
+  const handleLogOut = useCallback(() => {
+    dispatch(setUserAuth(false));
+    dispatch(setUser(null));
+  }, [dispatch]);
 
   return (
     <LayoutContainer>
@@ -46,14 +55,14 @@ const UserLayout: FC<PropsWithChildren> = ({ children }) => {
           ml="20px"
           onClick={() => onModalOpen(ANALYZE_MODAL_TYPE)}
         >
-          +Добавить анализ
+          + Добавить анализ
         </Button>
         <Container
           as="button"
           alignItems="center"
           gap={10}
           ml="auto"
-          onClick={() => setAuth(false)}
+          onClick={handleLogOut}
         >
           {user!.name ?? user!.email}
           <Avatar />

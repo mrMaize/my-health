@@ -184,9 +184,15 @@ render(
 ```tsx
 // левая часть – селектор, результат выполнения правой части
 // правая часть – выборка данных через хук, у которого всегда есть какой-то `return`
+const selectUser = (state) => state.user;
+ 
 const selectUser = useSelector((state) => {
   return state.user;
 });
+
+
+
+
 ```
 
 > Selector принимает единственный аргумент – Redux store state. Функция селекотора должна быть чистой функцией (pure function), то есть не должна создавать side-effects.
@@ -317,7 +323,7 @@ function Component() {
 
 ```tsx
 // userActions.ts
-export const setUserLoggedIn = () => {
+export const setUserLoggedOut = () => {
   return {
     actionType: 'REMOVE_USER',
   };
