@@ -1,11 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import localStorageManager from '../../../shared/localStorage/localStorageManager';
+import { REFRESH_TOKEN_LS_KEY } from '../constants';
+
 interface IAuthState {
   isAuth: boolean;
 }
 
 const initialState: IAuthState = {
-  isAuth: false,
+  isAuth: localStorageManager.getValue(REFRESH_TOKEN_LS_KEY, false),
 };
 
 const authReducer = createSlice({

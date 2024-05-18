@@ -1,2 +1,3 @@
-export { AuthConsumer } from './auth-context';
-export { useAuth } from './useAuth';
+export { useIsAuth } from './model/selectors';
+
+export { REFRESH_TOKEN_LS_KEY } from './constants';

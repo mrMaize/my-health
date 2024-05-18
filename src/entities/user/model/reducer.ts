@@ -1,13 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { IUser } from '../../../shared/types/user';
+import localStorageManager from '../../../shared/localStorage/localStorageManager';
+import { USER_DATA_LS_KEY } from '../constants';
 
 type IUserState = {
   userData: null | IUser;
 };
 
 const initialState: IUserState = {
-  userData: null,
+  userData: localStorageManager.getValue(USER_DATA_LS_KEY),
 };
 
 const userReducer = createSlice({

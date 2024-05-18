@@ -1,9 +1,15 @@
 const localStorageManager = {
-  setValue: (key: string, value: string) => {
-    return localStorage.setItem(key, value);
+  setValue: (key: string, value: any) => {
+    return localStorage.setItem(key, JSON.stringify(value));
   },
-  getValue: (key: string) => {
-    return localStorage.getItem(key);
+  getValue: (key: string, defaultValue: any = null) => {
+    const value = localStorage.getItem(key);
+
+    if (!value) {
+      return defaultValue;
+    }
+
+    return JSON.parse(value);
   },
   removeValue: (key: string) => {
     localStorage.removeItem(key);

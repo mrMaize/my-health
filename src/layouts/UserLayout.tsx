@@ -5,20 +5,16 @@ import { space, SpaceProps } from 'styled-system';
 import { useDispatch } from 'react-redux';
 
 import { Avatar, Button, Container } from '../shared/components';
-import { Gender, IUser } from '../shared/types/user';
 import { ANALYZES, MED_CARD_ROUTS } from '../shared/routes';
 import { ANALYZE_MODAL_TYPE } from '../entities/analyze';
 import { useModalController } from '../shared/modal-controller';
 import { setUserAuth } from '../entities/auth/model/reducer';
 import { setUser } from '../entities/user/model/reducer';
+import { USER_DATA_LS_KEY, useUser } from '../entities/user';
+import localStorageManager from '../shared/localStorage/localStorageManager';
+import { REFRESH_TOKEN_LS_KEY } from '../entities/auth';
 
 import { Header, LayoutContainer } from './components';
-
-export const MOCK_USER_DATA: IUser = {
-  email: 'user@gmail.com',
-  gender: Gender.male,
-  name: 'Иллион Александрович',
-};
 
 const TitleNav = styled.nav<SpaceProps>`
   display: flex;
@@ -32,15 +28,15 @@ const TitleNav = styled.nav<SpaceProps>`
 const UserLayout: FC<PropsWithChildren> = ({ children }) => {
   const dispatch = useDispatch();
 
-  const user = MOCK_USER_DATA;
-
-  // const { setAuth } = useAuth();
+  const user = useUser();
 
   const { onModalOpen } = useModalController();
 
   const handleLogOut = useCallback(() => {
     dispatch(setUserAuth(false));
     dispatch(setUser(null));
+    localStorageManager.removeValue(REFRESH_TOKEN_LS_KEY);
+    localStorageManager.removeValue(USER_DATA_LS_KEY);
   }, [dispatch]);
 
   return (
@@ -64,7 +60,7 @@ const UserLayout: FC<PropsWithChildren> = ({ children }) => {
           ml="auto"
           onClick={handleLogOut}
         >
-          {user!.name ?? user!.email}
+          {user!.email}
           <Avatar />
         </Container>
       </Header>

@@ -7,5 +7,7 @@ export { Avatar } from './avatar';
 export { Button } from './Button';
 export { Form } from './Form';
 export { Container } from './Container';
+export { Tooltip } from './tooltip';
+export { Dropdown } from './dopdown';
 
 export { Page, Title, Input };
