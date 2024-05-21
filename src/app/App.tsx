@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { GuestLayout, UserLayout } from '../layouts';
 import { ModalController } from '../shared/modal-controller';
-import { AnalyzeModal, ANALYZE_MODAL_TYPE } from '../entities/analyze';
+import { AnalyzeModal, ANALYZE_MODAL_TYPE } from '../entities/analyze/ui';
 import { useIsAuth } from '../entities/auth/model/selectors';
 
 import { guestRoutesMap, userRoutesMap } from './routes/routes';

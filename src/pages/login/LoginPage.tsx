@@ -5,12 +5,12 @@ import { useDispatch } from 'react-redux';
 import { Panel, Title, Input, Button, Form } from '../../shared/components';
 import { CenteredPage } from '../../layouts';
 import { EButtonVariant } from '../../shared/components/Button';
-import { STARTING_PAGE_ROUT } from '../../shared/routes';
 import localStorageManager from '../../shared/localStorage/localStorageManager';
 import { setUser } from '../../entities/user/model/reducer';
 import { setUserAuth } from '../../entities/auth/model/reducer';
 import { REFRESH_TOKEN_LS_KEY } from '../../entities/auth';
 import { USER_DATA_LS_KEY } from '../../entities/user';
+import { routes } from '../../shared/routes';
 
 import { fetchUser, signInEmailAndPassword } from './api/auth.api';
 
@@ -39,7 +39,7 @@ const LoginPage: FC = () => {
         dispatch(setUserAuth(true));
         dispatch(setUser(user));
 
-        navigate(location.state?.urlToGoAfter || STARTING_PAGE_ROUT, {
+        navigate(location.state?.urlToGoAfter || routes.starting.startingPage, {
           replace: true,
         });
       } catch (error) {
@@ -48,7 +48,7 @@ const LoginPage: FC = () => {
         setSubmitting(false);
       }
     },
-    [login, password]
+    [dispatch, location.state?.urlToGoAfter, login, navigate, password]
   );
 
   const isFormValid = !!login && !!password;

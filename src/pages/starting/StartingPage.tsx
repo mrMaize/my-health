@@ -14,6 +14,8 @@ const StartingPage: FC = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  console.log('hello');
+
   return (
     <CenteredPage>
       <Panel width={500} height={500}>

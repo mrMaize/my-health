@@ -1,8 +1,7 @@
 import { FC } from 'react';
 
-import { Modal } from '../../shared/components/modals';
-
-import { IAnalyze } from './types';
+import { IAnalyze } from '../types';
+import { Modal } from '../../../shared/components/modals';
 
 interface IAnalyzeModalProps {
   analyze?: IAnalyze;

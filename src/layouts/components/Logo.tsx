@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { STARTING_PAGE_ROUT } from '../../shared/routes';
+import { routes } from '../../shared/routes';
 
 const TitleLogo = styled(Link)(
   ({ theme: { colors } }) => css`
@@ -13,7 +13,7 @@ const TitleLogo = styled(Link)(
 );
 
 const Logo = () => {
-  return <TitleLogo to={STARTING_PAGE_ROUT}>My health</TitleLogo>;
+  return <TitleLogo to={routes.starting.startingPage}>My health</TitleLogo>;
 };
 
 export { Logo };

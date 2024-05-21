@@ -1,23 +1,29 @@
-export enum ELoginRoutes {
-  LOGIN_PAGE = '/login',
-  REGISTER_PAGE = '/register',
-}
+type TRoute = Record<string, string>;
 
-export enum EProfileRoutes {
-  PROFILE_PAGE = '/health/profile',
-}
+type TRoutes = Record<string, TRoute>;
 
-export const STARTING_PAGE_ROUT = '/';
-
-export const MED_CARD_ROUTS = {
-  MAIN: '/med-cards',
+const routes: TRoutes = {
+  starting: {
+    startingPage: '/',
+  },
+  login: {
+    loginPage: '/login',
+    registerPage: '/register',
+  },
+  user: {
+    userProfilePage: '/profile',
+  },
+  medCard: {
+    mainPage: '/med-card',
+  },
+  medResults: {
+    mainPage: '/med-results',
+  },
 };
 
-export const ANALYZES = {
-  MAIN: '/analyzes',
-};
-
-export const PUBLIC_ROUTES = [
-  ELoginRoutes.LOGIN_PAGE,
-  ELoginRoutes.REGISTER_PAGE,
+const publicRoutes: Array<string> = [
+  routes.login.loginPage,
+  routes.login.registerPage,
 ];
+
+export { routes, publicRoutes };

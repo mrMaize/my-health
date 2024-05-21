@@ -5,14 +5,14 @@ import { space, SpaceProps } from 'styled-system';
 import { useDispatch } from 'react-redux';
 
 import { Avatar, Button, Container } from '../shared/components';
-import { ANALYZES, MED_CARD_ROUTS } from '../shared/routes';
-import { ANALYZE_MODAL_TYPE } from '../entities/analyze';
+import { ANALYZE_MODAL_TYPE } from '../entities/analyze/ui';
 import { useModalController } from '../shared/modal-controller';
 import { setUserAuth } from '../entities/auth/model/reducer';
 import { setUser } from '../entities/user/model/reducer';
 import { USER_DATA_LS_KEY, useUser } from '../entities/user';
 import localStorageManager from '../shared/localStorage/localStorageManager';
 import { REFRESH_TOKEN_LS_KEY } from '../entities/auth';
+import { routes } from '../shared/routes';
 
 import { Header, LayoutContainer } from './components';
 
@@ -43,8 +43,8 @@ const UserLayout: FC<PropsWithChildren> = ({ children }) => {
     <LayoutContainer>
       <Header>
         <TitleNav ml="20px">
-          <Link to={MED_CARD_ROUTS.MAIN}>мед карта</Link>
-          <Link to={ANALYZES.MAIN}>анализы</Link>
+          <Link to={routes.medCard.mainPage}>Мед карта</Link>
+          <Link to={routes.medResults.mainPage}>Анализы</Link>
         </TitleNav>
         <Button
           size="s"
@@ -60,7 +60,7 @@ const UserLayout: FC<PropsWithChildren> = ({ children }) => {
           ml="auto"
           onClick={handleLogOut}
         >
-          {user!.email}
+          {user && user.email}
           <Avatar />
         </Container>
       </Header>

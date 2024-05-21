@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 
 import localStorageManager from '../../localStorage/localStorageManager';
-import { ELoginRoutes, PUBLIC_ROUTES } from '../../routes';
+import { publicRoutes, routes } from '../../routes';
 
 import { AUTH_REFRESH_TOKEN } from './constants';
 
@@ -12,7 +12,7 @@ export const useCheckUserAuth = () => {
   const refreshToken = localStorageManager.getValue(AUTH_REFRESH_TOKEN);
 
   const isPublicRoute = useMemo(
-    () => PUBLIC_ROUTES.some((route) => route === location.pathname),
+    () => publicRoutes.some((route) => route === location.pathname),
     [location]
   );
 
@@ -30,7 +30,7 @@ export const useCheckUserAuth = () => {
         urlToGoAfter: location.pathname,
       });
 
-      navigate(ELoginRoutes.LOGIN_PAGE, {
+      navigate(routes.login.loginPage, {
         state: {
           urlToGoAfter: location.pathname,
         },
