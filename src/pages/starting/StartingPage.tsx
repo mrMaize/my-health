@@ -1,39 +1,23 @@
-import { FC, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { FC } from 'react';
 
 import { CenteredPage } from '../../layouts';
-import { Button, Dropdown, Panel, Tooltip } from '../../shared/components';
-
-const ContextMenu = styled(Dropdown)`
-  background: blue;
-  gap: 5px;
-`;
+import { Panel } from '../../shared/components';
+import { AddMedicalResultsPopover } from '../../widgets/medicalResults/MedicalResultPopover';
+import { ValidatedForm1 } from '../../widgets/validatedForm1/ValidatedForm1';
+import { ValidatedFormYup } from '../../widgets/validatedFormYup/ui/ValidatedFormYup';
+import { ValidatedReactHookForm } from '../../widgets/validatedReachHookForm/ui/validatedReactHookForm';
 
 const StartingPage: FC = () => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  console.log('hello');
-
   return (
     <CenteredPage>
-      <Panel width={500} height={500}>
-        <Tooltip title="Откроется модальное окно для заполнения данных">
-          <Button ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
-            Click me
-          </Button>
-        </Tooltip>
-        <ContextMenu
-          target={buttonRef.current}
-          isOpen={isOpen}
-          setOpen={setIsOpen}
-        >
-          <Button>Добавить анализ</Button>
-          <Button>Добавить анализ</Button>
-          <Button>Добавить анализ</Button>
-          <Button>Добавить анализ</Button>
-        </ContextMenu>
+      <Panel width={500} height={700}>
+        {/* <AddMedicalResultsPopover /> */}
+
+        {/* <ValidatedForm1 /> */}
+
+        {/* <ValidatedReactHookForm /> */}
+
+        <ValidatedFormYup />
       </Panel>
     </CenteredPage>
   );

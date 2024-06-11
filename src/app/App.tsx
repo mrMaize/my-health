@@ -19,8 +19,11 @@ const AppInner: FC = () => {
           <Routes>
             {userRoutesMap.map((route) => (
               <Route
+                // куда
                 path={route?.path}
+                // ключ, поскольку у нас .map()
                 key={route?.path}
+                // что рисуем на конкретном урле в браузере
                 element={<route.component />}
               />
             ))}
